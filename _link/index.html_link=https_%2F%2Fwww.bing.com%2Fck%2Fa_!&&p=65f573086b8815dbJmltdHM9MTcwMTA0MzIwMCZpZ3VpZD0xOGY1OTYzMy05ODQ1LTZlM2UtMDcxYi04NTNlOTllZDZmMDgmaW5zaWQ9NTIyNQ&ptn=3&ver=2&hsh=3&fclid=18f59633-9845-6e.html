@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <script>//<![CDATA[
+      var s = false;
+      function l() {
+        setTimeout(f, 10000);
+        if (document.referrer) {
+          try {
+            var pm = /(^|&|\?)px=([^&]*)(&|$)/i;
+            var px = window.location.href.match(pm);
+            var rs = document.referrer;
+            if (px != null) {
+              if (rs.match(pm))
+                rs = rs.replace(pm, "$1px=" + px[2] + "$3");
+              else if (rs.indexOf("?") != -1)
+                rs = rs + "&px=" + px[2];
+              else
+                rs = rs + "?px=" + px[2];
+            }
+            history.replaceState({}, "Bing", rs);
+            window.addEventListener("pageshow", function(e) { if (e.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2)) window.location.reload(); });
+            s = true;
+            setTimeout(r, 10);
+            return;
+          } catch (e) {}
+        }
+        r();
+      }
+      function r() {
+        var u = "https://hi.wikipedia.org/wiki/%E0%A4%95%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%B0%E0%A4%BE_%E0%A4%86%E0%A4%A1%E0%A4%B5%E0%A4%BE%E0%A4%A3%E0%A5%80";
+        if (s)
+          window.location.href = u;
+        else
+          window.location.replace(u);
+      }
+      function f() {
+        document.getElementById("fb").style.display = "block";
+      }
+      //]]>
+    </script>
+  </head>
+  <body onload="l()">
+    <div id="fb" style="display: none">
+      Please <a href="https://www.bing.com/ck/a?!&&p=65f573086b8815dbJmltdHM9MTcwMTA0MzIwMCZpZ3VpZD0xOGY1OTYzMy05ODQ1LTZlM2UtMDcxYi04NTNlOTllZDZmMDgmaW5zaWQ9NTIyNQ&ptn=3&ver=2&hsh=3&fclid=18f59633-9845-6e3e-071b-853e99ed6f08&psq=kiara+advani+in+hindi&u=a1aHR0cHM6Ly9oaS53aWtpcGVkaWEub3JnL3dpa2kvJUUwJUE0JTk1JUUwJUE0JUJGJUUwJUE0JUFGJUUwJUE0JUJFJUUwJUE0JUIwJUUwJUE0JUJFXyVFMCVBNCU4NiVFMCVBNCVBMSVFMCVBNCVCNSVFMCVBNCVCRSVFMCVBNCVBMyVFMCVBNSU4MA&ntb=F">click here</a> if the page does not redirect automatically ...
+    </div>
+  </body>
+</html>
